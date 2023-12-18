@@ -1,0 +1,14 @@
+<div class="wrapper">
+    <header id="header">
+        <button (click)="openDialog()">Open Dialog</button>
+    </header>
+    <main id="main">
+        <app-login></app-login>
+    </main>
+    <footer id="footer"></footer>
+</div>
+
+<dialog #dialog id="dialog">
+    <app-register></app-register>
+    <button (click)="closeDialog()">Close</button>
+</dialog>
