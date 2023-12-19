@@ -9,6 +9,5 @@
 </div>
 
 <dialog #dialog id="dialog">
-    <app-register></app-register>
-    <button (click)="closeDialog()">Close</button>
+    <app-register (closeDialog)="closeDialog()"></app-register>
 </dialog>
