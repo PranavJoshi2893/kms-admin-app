@@ -1,24 +1,29 @@
-<div class="wrapper">
+<div class="form_container">
     <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-        <div class="formfield">
-            <label for="r_firstname">First Name:</label>
-            <input type="text" id="r_firstname" formControlName="first_name" autocomplete="given-name">
-        </div>
-        <div class="formfield">
-            <label for="r_lastname">Last Name:</label>
-            <input type="text" id="r_lastname" formControlName="last_name" autocomplete="family-name">
-        </div>
-        <div class="formfield">
-            <label for="r_username">Username:</label>
-            <input type="text" id="r_username" formControlName="username" autocomplete="username">
-        </div>
-        <div class="formfield">
-            <label for="r_password">Password:</label>
-            <input type="password" id="r_password" formControlName="password" autocomplete="new-password">
-        </div>
-        <section>
-            <button (click)="toggleDialog()">Close</button>
-            <button>Register</button>
+
+        <mat-form-field appearance="outline" class="fieldset">
+            <mat-label>First Name</mat-label>
+            <input type="text" matInput formControlName="first_name" autocomplete="given-name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="fieldset">
+            <mat-label>Last Name</mat-label>
+            <input type="text" matInput formControlName="last_name" autocomplete="family-name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="fieldset">
+            <mat-label>Username</mat-label>
+            <input type="text" matInput formControlName="username" autocomplete="username">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="fieldset">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" autocomplete="new-password">
+        </mat-form-field>
+
+        <section id="btn_layout">
+            <button type="reset" mat-stroked-button color="primary" (click)="toggleDialog()" autofocus>Close</button>
+            <button mat-raised-button color="primary">Register</button>
         </section>
     </form>
 </div>

@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../shared/service/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -12,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup = new FormGroup({});
 
-  constructor(private _fb: FormBuilder) { }
+  constructor(private _fb: FormBuilder, private _authService: AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this._fb.group({
@@ -23,7 +27,15 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
+      this._authService.userLogin(this.loginForm.value).subscribe({
+        next: (response) => {
+          console.log(response.message)
+        }, error: (error) => {
+          console.log(error.error.message)
+          this.loginForm.reset()
+        }
+      })
+
     }
   }
 

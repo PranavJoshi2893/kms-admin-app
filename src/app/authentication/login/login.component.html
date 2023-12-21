@@ -1,13 +1,15 @@
-<div class="wrapper">
+<div class="form_container">
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-        <div class="formfield">
-            <label for="l_username">Username:</label>
-            <input type="text" id="l_username" formControlName="username" autocomplete="username">
-        </div>
-        <div class="formfield">
-            <label for="l_password">Password:</label>
-            <input type="password" id="l_password" formControlName="password" autocomplete="current-password">
-        </div>
-        <button>Login</button>
+        <mat-form-field appearance="outline" class="fieldset">
+            <mat-label>Username</mat-label>
+            <input type="text" matInput formControlName="username" autocomplete="username">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="fieldset">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" autocomplete="current-password">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary">Login</button>
     </form>
 </div>

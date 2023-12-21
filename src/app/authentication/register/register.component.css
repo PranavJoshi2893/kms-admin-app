@@ -1,11 +1,4 @@
-.wrapper {
-    width: 22rem;
-    height: min-content;
-    padding: 1rem;
-    border: 1px solid var(--border-color);
-}
-
-.formfield {
+#btn_layout{
     display: flex;
     justify-content: space-between;
 }
