@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
           console.log(response.message);
           this.closeDialog.emit();
         }, error: (error) => {
-          console.log(error.error.message)
+          console.log(error)
           this.registerForm.reset();
         }
       })

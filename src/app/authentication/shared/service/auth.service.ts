@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,26 @@ export class AuthService {
   constructor(private _http: HttpClient) { }
 
   userLogin(user: any): Observable<any> {
-    return this._http.post<any>(`${this._authUrl}/login`, user);
+    return this._http.post<any>(`${this._authUrl}/login`, user).pipe(catchError(this.handleError));
   }
 
   userRegister(user: any): Observable<any> {
-    return this._http.post<any>(`${this._authUrl}/register`, user);
+    return this._http.post<any>(`${this._authUrl}/register`, user).pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: HttpErrorResponse) {
+
+    let errorMessage = ""
+
+    if (error.status === 0) {
+      errorMessage = `An error occurred: ${error.statusText}`
+    } else {
+      errorMessage = `Backend returned code ${error.status}, body was: ${error.error.message}`
+    }
+
+    return throwError(() => {
+      return errorMessage
+    })
   }
 
 }

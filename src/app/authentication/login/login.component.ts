@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         next: (response) => {
           console.log(response.message)
         }, error: (error) => {
-          console.log(error.error.message)
+          console.log(error)
           this.loginForm.reset()
         }
       })
