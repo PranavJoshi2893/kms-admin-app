@@ -7,7 +7,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class AuthService {
 
-  private _authUrl = 'http://192.168.0.129:3000/api/v1'
+  private _authUrl = 'http://127.0.0.1:3000/api/v1'
   constructor(private _http: HttpClient) { }
 
   userLogin(user: any): Observable<any> {
