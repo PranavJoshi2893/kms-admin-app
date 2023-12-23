@@ -1,9 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../shared/service/auth.service';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-register',
@@ -14,11 +15,9 @@ import { AuthService } from '../shared/service/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  @Output() closeDialog = new EventEmitter<void>();
-
   registerForm: FormGroup = new FormGroup({});
 
-  constructor(private _fb: FormBuilder, private _authService: AuthService) { }
+  constructor(private _fb: FormBuilder, private _authService: AuthService, public dialogRef: DialogRef) { }
 
   ngOnInit(): void {
     this.registerForm = this._fb.group({
@@ -29,19 +28,13 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  toggleDialog() {
-    this.closeDialog.emit();
-  }
-
   onRegister() {
     if (this.registerForm.valid) {
       this._authService.userRegister(this.registerForm.value).subscribe({
         next: (response) => {
           console.log(response.message);
-          this.closeDialog.emit();
         }, error: (error) => {
           console.log(error)
-          this.registerForm.reset();
         }
       })
 

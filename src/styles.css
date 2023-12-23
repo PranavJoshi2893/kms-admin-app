@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
     --border-color: rgba(0, 0, 0, 0.12);
+    --element-color: #ffffff;
 }
 
 * {
@@ -29,6 +30,7 @@ body {
     height: min-content;
     padding: 1rem;
     border: 1px solid var(--border-color);
+    background-color: var(--element-color);
 }
 
 .fieldset {
